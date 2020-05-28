@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+@model List<OdrzanaNastavaIndex>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Skola</th>
+            <th>Ime i prezime nastavnika</th>
+            <th>Akcija</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var n in Model)
+        {
+        <tr>
+            
+            <td>
+               @n.Skole
+
+            </td>
+                <td>@n.ImeIPrezimeNastavnika</td>
+                <td><a href="/OdrzanaNastava/MaturskiIspitiNastavnika?id=@n.NastanikID" class="btn btn-success">Odaberi</a></td>
+        </tr>
+        }
+    </tbody>
+
+</table>

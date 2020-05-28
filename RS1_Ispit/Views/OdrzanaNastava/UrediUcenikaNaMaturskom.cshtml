@@ -1,0 +1,34 @@
+﻿
+@{
+    ViewData["Title"] = "UrediUcenikaNaMaturskom";
+}
+@model OdrzanaNastavaUrediUcenikaNaMaturskom
+
+    <form id="formaUredi" action="/OdrzanaNastava/SnimiUredjenogMaturanta">
+        <input type="hidden" name="maturskiUcenikID" value="@Model.MaturskiIspitUcenikID" />
+        <input type="hidden" name="maturskiID" value="@Model.MaturskiID" />
+        <input type="hidden" name="nastavnikID" value="@Model.NastavnikID" />
+        <div class="form-group">
+            Ucenik: <input readonly name="ucenik" value="@Model.Ucenik" /><br />
+        </div>
+        <div class="form-group">
+            Broj bodova: <input name="brojbodova" value="@Model.BrojBodova" />
+        </div>
+        <button id="btnSnimi" class="btn btn-success">Snimi</button>
+    </form>
+<script>
+    //$("#btnSnimi").click(function () {
+    //    var sadrzajForme = $("#formaUredi");
+    //    $.ajax({
+    //        type: "POST",
+    //        url: "/OdrzanaNastava/SnimiUredjenogMaturanta",
+    //        data: sadrzajForme.serialize(),
+    //        success: function (rez) {
+    //            $("#ajaxDIV").html(rez);
+    //        }
+    //    })
+    //});
+
+
+</script>
+

@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewData["Title"] = "UceniciMaturskogIspita";
+}
+
+@model OdrzanaNastavaUceniciMaturskogIspita
+
+
+<table class="table table-bordered">
+
+    <thead>
+        <tr>
+            <th>Ucenik</th>
+            <th>Prosjek ocjena</th>
+            <th>Pristupio ispitu</th>
+            <th>Rezultat maturskog (max 100)</th>
+            <th>Akcija</th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        @foreach(var s in Model.rows)
+        {
+        <tr>
+            <td>@s.Ucenik</td>
+            <td>@s.Prosjek</td>
+            @{
+                if (s.PristupioIspitu == true)
+                {
+                    <td><button class="btn btn-danger btnChange" at1="@s.MaturskiUcenikID" at2="@Model.MaturskiID" at3="@Model.NastavnikID" pristup="JESTE">DA</button></td>
+                }
+                else
+                {
+                    <td><button class="btn btn-success btnChange" at1="@s.MaturskiUcenikID" at2="@Model.MaturskiID" at3="@Model.NastavnikID" pristup="NIJE">NE</button></td>
+
+                }
+            }
+            <td>@s.RezultatMaturskog</td>
+            <td><button class="btn btn-warning UrediClass" atribut="@s.MaturskiUcenikID" atribut2="@Model.MaturskiID" atribut3="@Model.NastavnikID">Uredi</button></td>
+        </tr>
+        }
+    </tbody>
+</table>
+<script>
+    $(".UrediClass").click(function () {
+        var id = $(this).attr("atribut");
+        var ID = $(this).attr("atribut2");
+        var IDD = $(this).attr("atribut3");
+        $.get("/OdrzanaNastava/UrediUcenikaNaMaturskom?id=" + id+"&IDm="+ID+"&IDn="+IDD, function (rez) {
+            $("#ajaxDIV").html(rez);
+        });
+    });
+    $(".btnChange").click(function () {
+        var stavkaID = $(this).attr("at1");
+        var maturskiID = $(this).attr("at2");
+        var nastavnikID = $(this).attr("at3");
+        var dali = $(this).attr("pristup");
+        $.get("/OdrzanaNastava/PromijeniPrisustvo?idMS=" + stavkaID + "&idM=" + maturskiID + "&idN=" + nastavnikID + "&pristup=" + dali,
+            function (rez) {
+                $("#ajaxDIV").html(rez);
+
+            });
+
+
+    });
+</script>

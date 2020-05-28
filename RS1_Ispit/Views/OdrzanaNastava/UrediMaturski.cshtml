@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewData["Title"] = "UrediMaturski";
+}
+@model OdrzanaNastavaUrediMaturski
+
+    <form asp-action="SnimiUredjenMaturski">
+        <h2>Uredjivanje maturskog rada</h2>
+        <input type="hidden" asp-for="maturskiID" />
+        <input type="hidden" asp-for="nastavnikID" />
+        <div class="form-group">
+            Datum: <input readonly asp-for="datum" /><br />
+        </div>
+        <div class="form-group">
+            Predmet: <input readonly asp-for="predmet" /><br />
+
+        </div>
+        <div class="form-group">
+            Napomena: <input asp-for="napomena" /><br />
+            
+        </div>
+        <button class="btn btn-success" type="submit">Snimi</button>
+    </form>
+
+<div id="ajaxDIV">
+
+</div>
+
+<script>
+    $(document).ready(function () {
+        $.get("/OdrzanaNastava/UceniciMaturskogIspita?id=" +@Model.maturskiID+"&idN=@Model.nastavnikID", function (rez) {
+            $("#ajaxDIV").html(rez);
+
+        });
+    });
+</script>
+
+

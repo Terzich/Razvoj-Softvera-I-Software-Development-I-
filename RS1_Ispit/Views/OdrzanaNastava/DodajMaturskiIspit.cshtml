@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewData["Title"] = "DodajMaturskiIspit";
+}
+@model OdrzanaNastavaDodajMaturskiIspit
+
+<h3>Dodavanje maturskog ispita</h3>
+<form asp-action="SnimiMaturski">
+    <div class="form-group">
+        Skola: <select asp-for="SkolaID" asp-items="@Model.skole"><option>Izaberite skolu</option></select><br />
+
+    </div>
+    <div class="form-group">
+        Nastavnik: <input readonly value="@Model.Nastavnik" /><br />
+        <input type="hidden" asp-for="NastavnikID" value="@Model.NastavnikID"/>
+    </div>
+    <div class="form-group">
+        Skolska godina: <select asp-for="SkolskaGodinaID" asp-items="@Model.SkolskaGodina"><option>Izaberite skolsku godinu</option></select><br />
+
+    </div>
+    <div class="form-group">
+        Datum ispita: <input asp-for="DatumIspita" type="datetime" /><br />
+
+    </div>
+
+    <div class="form-group">
+        Predmet: <select asp-for="PredmetID" asp-items="@Model.predmeti"><option>Izaberite predmet</option></select><br />
+
+    </div>
+
+    <button class="btn btn-info" type="submit">Snimi</button>
+</form>

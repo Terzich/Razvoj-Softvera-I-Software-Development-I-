@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewData["Title"] = "MaturskiIspitiNastavnika";
+}
+
+@model OdrzanaNastavaMaturskiIspitiNastavnika
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Datum</th>
+            <th>Skola</th>
+            <th>Predmet</th>
+            <th>Nisu pristupili ucenici**</th>
+            <th>Akcija</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var s in Model.rows)
+        {
+        <tr>
+            <td>@s.Datum</td>
+            <td>@s.Skola</td>
+            <td>@s.Predmet</td>
+            <td>
+            @foreach(var u in s.UceniciKojiNisuPristupili)
+            {
+                <p>@u,</p>
+            }
+            </td>
+            <td><a href="/OdrzanaNastava/UrediMaturski?idM=@s.MaturskiIspitID&idN=@Model.NastavnikID" class="btn btn-warning">Uredi</a></td>
+
+        </tr>
+        }
+
+    </tbody>
+</table>
+<a href="/OdrzanaNastava/DodajMaturskiIspit?id=@Model.NastavnikID" class="btn btn-success">Dodaj</a>
+
